@@ -1,17 +1,22 @@
 import { Injectable } from '@angular/core';
-import { timer } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HeartBeatService {
-  source = timer(1000, 200);
+  worker = new Worker(new URL('./app.worker', import.meta.url));
   constructor() {
-    console.log('HB service created');
-  }
-
-  startBeat() {
-    console.log('Start');
-    return this.source;
+    this.worker.onmessage = ({ data }) => {
+      // console.log(`page got message: ${data}`);
+    };
+    setInterval(() => {
+      if (Math.floor(Math.random() * 10 + 1) % 5 == 0) {
+        let a = 0;
+        while (a < 100000000) {
+          a += 1;
+        }
+      }
+      this.worker.postMessage(performance.now());
+    }, 200);
   }
 }
