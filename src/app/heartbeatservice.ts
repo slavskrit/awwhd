@@ -12,7 +12,7 @@ export class HeartBeatService {
     setInterval(() => {
       if (Math.floor(Math.random() * 10 + 1) % 5 == 0) {
         let a = 0;
-        while (a < 100000000) {
+        while (a < 10000000000) {
           a += 1;
         }
       }

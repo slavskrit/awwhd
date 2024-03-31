@@ -3,8 +3,9 @@
 let lastTimestamp = performance.now();
 
 addEventListener('message', ({ data }) => {
-  // setInterval(() => {
-  // console.log(lastTimestamp, data, lastTimestamp < data - 1100);
+  setInterval(() => {
+    console.log('worker is alive');
+  }, 200);
   if (lastTimestamp < data - 220) {
     console.error('OMG with lag: ' + (data - lastTimestamp));
   } else {
