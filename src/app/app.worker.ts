@@ -7,6 +7,9 @@ addEventListener('message', ({ data }) => {
     console.log('worker is alive');
   }, 200);
   if (lastTimestamp < data - 220) {
+    fetch('https://jsonplaceholder.typicode.com/posts/1')
+      .then((response) => response.json())
+      .then((json) => console.log(json));
     console.error('OMG with lag: ' + (data - lastTimestamp));
   } else {
     console.info('OK');
